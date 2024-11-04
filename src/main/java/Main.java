@@ -12,15 +12,21 @@ public class Main {
             int carSpeed = 0;
 
             while (true) {
-                System.out.println("— Введите скорость машины №" + (i+1) +":");
-                carSpeed = scanner.nextInt();
-                if (carSpeed >= 0 && carSpeed <= 250) {
-                    break;
+                System.out.println("— Введите скорость машины №" + (i + 1) + ":");
+
+                // Проверяем, состоит ли следующее значение только из цифр и не превышает ли лимит Java
+                if (scanner.hasNextInt()) {
+                    carSpeed = scanner.nextInt();
+                    if (carSpeed >= 0 && carSpeed <= 250) {
+                        break;
+                    } else {
+                        System.out.println("— Неправильная скорость ");
+                    }
                 } else {
-                    System.out.println("— Неправильная скорость  ");
+                    System.out.println("Введите скорость от 0 до 250!");
+                    scanner.nextLine(); // Чистим сканнер от некорректного ввода
                 }
             }
-
             scanner.nextLine(); // Очистка сканера.
 
             Car car = new Car(carName, carSpeed);
